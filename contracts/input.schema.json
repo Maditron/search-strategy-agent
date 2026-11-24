@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchStrategyInput",
+  "description": "Public input contract for the Search Strategy Agent.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "objective": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The information need the agent must transform into a search strategy."
+    },
+    "context": {
+      "type": ["string", "null"],
+      "description": "Additional background that helps interpret the objective."
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Restrictions or requirements that the strategy must respect."
+    },
+    "preferred_source_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Preferred categories of information sources."
+    },
+    "freshness_requirement": {
+      "type": ["string", "null"],
+      "description": "How recent the information should be."
+    }
+  },
+  "required": ["objective"]
+}

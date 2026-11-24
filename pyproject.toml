@@ -1,0 +1,33 @@
+[project]
+name = "search-strategy-agent"
+version = "0.1.0"
+description = "An independent agent that transforms information needs into structured search strategies."
+readme = "README.md"
+authors = [
+    { name = "maditron", email = "mahdi.namehavar@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "a2a-sdk[http-server]==1.3.1",
+    "httpx>=0.28.1",
+    "pydantic>=2.14.4",
+    "python-dotenv>=1.2.4",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+search-strategy-agent = "search_strategy_agent.a2a.server:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "jsonschema>=4.26.0",
+    "pytest>=9.2.0",
+]
+
+[tool.uv.build-backend]
+module-name = "search_strategy_agent"
+module-root = "src"

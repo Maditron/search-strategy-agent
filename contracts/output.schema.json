@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchStrategyOutput",
+  "description": "Public output contract for the Search Strategy Agent.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "interpreted_objective": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The agent's interpretation of the requested information need."
+    },
+    "information_dimensions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Distinct dimensions that should be investigated."
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Relative execution priority. 1 is the highest priority."
+          }
+        },
+        "required": ["query", "purpose", "priority"]
+      },
+      "description": "Prioritized search queries and their intended purposes."
+    },
+    "source_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Recommended categories of information sources."
+    },
+    "freshness_filter": {
+      "type": ["string", "null"],
+      "description": "Recommended temporal filter for the search."
+    },
+    "exclusion_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Irrelevant or unsuitable material to exclude."
+    },
+    "stopping_conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Conditions indicating when the planned search is sufficiently complete."
+    },
+    "unresolved_ambiguities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Uncertainties that may affect the search strategy."
+    }
+  },
+  "required": [
+    "interpreted_objective",
+    "information_dimensions",
+    "queries",
+    "source_types",
+    "exclusion_criteria",
+    "stopping_conditions",
+    "unresolved_ambiguities"
+  ]
+}
